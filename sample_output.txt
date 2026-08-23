@@ -1,0 +1,106 @@
+==================================================
+        STUDENT ATTENDANCE REGISTER
+==================================================
+Welcome to the Attendance Management System!
+
+==================================================
+              MAIN MENU
+==================================================
+1. Add Student
+2. View All Students
+3. Search Student
+4. Mark Attendance
+5. View Attendance
+6. View Attendance History
+7. Update Attendance
+8. Class Attendance Summary
+9. Low Attendance Students
+10. Class Statistics
+11. Attendance Insights
+12. Exit
+==================================================
+
+Enter your choice: 1
+
+Enter Roll Number: 101
+Enter Student Name: Shivam
+
+Student Shivam added successfully.
+
+Enter your choice: 4
+
+Enter Roll Number: 101
+
+Student: Shivam
+P - Present
+A - Absent
+Enter attendance status (P/A): P
+
+Attendance marked as Present.
+
+Enter your choice: 4
+
+Enter Roll Number: 101
+
+Student: Shivam
+P - Present
+A - Absent
+Enter attendance status (P/A): P
+
+Attendance marked as Present.
+
+Enter your choice: 4
+
+Enter Roll Number: 101
+
+Student: Shivam
+P - Present
+A - Absent
+Enter attendance status (P/A): A
+
+Attendance marked as Absent.
+
+Enter your choice: 5
+
+Enter Roll Number: 101
+
+==================================================
+           ATTENDANCE REPORT
+==================================================
+Roll Number    : 101
+Student Name   : Shivam
+Total Classes  : 3
+Present        : 2
+Absent         : 1
+Attendance     : 66.67%
+Warning: Attendance is below 75%.
+==================================================
+
+Enter your choice: 9
+
+==================================================
+          LOW ATTENDANCE STUDENTS
+==================================================
+Roll Number : 101
+Name        : Shivam
+Attendance  : 66.67%
+--------------------------------------------------
+==================================================
+
+Enter your choice: 10
+
+==================================================
+          CLASS ATTENDANCE STATISTICS
+==================================================
+Total Students : 1
+Present Records: 2
+Absent Records : 1
+Average Attendance : 66.67%
+Highest Attendance : 66.67%
+Lowest Attendance  : 66.67%
+==================================================
+
+Enter your choice: 12
+
+Thank you for using Student Attendance Register.
+Exiting program...
