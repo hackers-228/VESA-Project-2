@@ -4,12 +4,6 @@
 # Domain: Python Programming
 # --------------------------------------------
 
-print("=" * 50)
-print("        STUDENT ATTENDANCE REGISTER")
-print("=" * 50)
-
-print("Welcome to the Attendance Management System!")
-
 # Minimum attendance percentage required
 ATTENDANCE_THRESHOLD = 75
 
@@ -21,11 +15,19 @@ students = {}
 def add_student():
     roll_number = input("Enter Roll Number: ").strip()
 
+    if not roll_number:
+        print("Roll Number cannot be empty.")
+        return
+
     if roll_number in students:
         print("Error: This Roll Number is already registered.")
         return
 
     name = input("Enter Student Name: ").strip()
+
+    if not name:
+        print("Student name cannot be empty.")
+        return
 
     students[roll_number] = {
         "name": name,
@@ -73,6 +75,10 @@ def search_student():
 
 # Function to mark attendance
 def mark_attendance():
+    if not students:
+        print("\nNo students are registered.")
+        return
+
     roll_number = input("\nEnter Roll Number: ").strip()
 
     if roll_number not in students:
@@ -307,7 +313,6 @@ def class_statistics():
         return
 
     attendance_percentages = []
-
     total_present = 0
     total_absent = 0
 
@@ -341,14 +346,13 @@ def class_statistics():
         print(f"Average Attendance : {average_attendance:.2f}%")
         print(f"Highest Attendance : {highest_attendance:.2f}%")
         print(f"Lowest Attendance  : {lowest_attendance:.2f}%")
-
     else:
         print("No attendance has been recorded yet.")
 
     print("=" * 50)
 
 
-# Function to identify students with highest and lowest attendance
+# Function to display highest and lowest attendance students
 def attendance_insights():
     student_percentages = []
 
@@ -386,36 +390,74 @@ def attendance_insights():
     print("=" * 50)
 
 
-# Add a student
-print("\n--- Add Student ---")
-add_student()
+# Function to display the main menu
+def display_menu():
+    print("\n" + "=" * 50)
+    print("              MAIN MENU")
+    print("=" * 50)
 
-# Display all students
-display_students()
+    print("1. Add Student")
+    print("2. View All Students")
+    print("3. Search Student")
+    print("4. Mark Attendance")
+    print("5. View Attendance")
+    print("6. View Attendance History")
+    print("7. Update Attendance")
+    print("8. Class Attendance Summary")
+    print("9. Low Attendance Students")
+    print("10. Class Statistics")
+    print("11. Attendance Insights")
+    print("12. Exit")
 
-# Search for a student
-search_student()
+    print("=" * 50)
 
-# Mark attendance
-mark_attendance()
 
-# Display individual attendance
-display_attendance()
+# Main program
+print("\nWelcome to the Attendance Management System!")
 
-# Display class summary
-attendance_summary()
+while True:
+    display_menu()
 
-# Display attendance history
-attendance_history()
+    choice = input("Enter your choice: ").strip()
 
-# Update an attendance record
-update_attendance()
+    if choice == "1":
+        add_student()
 
-# Display students with low attendance
-low_attendance_students()
+    elif choice == "2":
+        display_students()
 
-# Display class statistics
-class_statistics()
+    elif choice == "3":
+        search_student()
 
-# Display attendance insights
-attendance_insights()
+    elif choice == "4":
+        mark_attendance()
+
+    elif choice == "5":
+        display_attendance()
+
+    elif choice == "6":
+        attendance_history()
+
+    elif choice == "7":
+        update_attendance()
+
+    elif choice == "8":
+        attendance_summary()
+
+    elif choice == "9":
+        low_attendance_students()
+
+    elif choice == "10":
+        class_statistics()
+
+    elif choice == "11":
+        attendance_insights()
+
+    elif choice == "12":
+        print("\nThank you for using Student Attendance Register.")
+        print("Exiting program...")
+        break
+
+    else:
+        print("\nInvalid choice.")
+        print("Please select a number from 1 to 12.")
