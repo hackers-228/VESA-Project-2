@@ -73,7 +73,6 @@ def search_student():
 def mark_attendance():
     roll_number = input("\nEnter Roll Number: ").strip()
 
-    # Check whether the student exists
     if roll_number not in students:
         print("Student not found.")
         return
@@ -86,7 +85,6 @@ def mark_attendance():
 
     status = input("Enter attendance status: ").strip().upper()
 
-    # Validate attendance status
     if status == "P":
         student["attendance"].append("P")
         print("Attendance marked as Present.")
@@ -114,7 +112,7 @@ def calculate_percentage(attendance):
     return percentage
 
 
-# Function to display attendance percentage
+# Function to display individual attendance
 def display_attendance():
     roll_number = input("\nEnter Roll Number: ").strip()
 
@@ -145,6 +143,49 @@ def display_attendance():
     print("=" * 50)
 
 
+# Function to display class attendance summary
+def attendance_summary():
+    if not students:
+        print("\nNo student records available.")
+        return
+
+    total_students = len(students)
+    total_present = 0
+    total_absent = 0
+    students_with_attendance = 0
+
+    for student in students.values():
+        attendance = student["attendance"]
+
+        if attendance:
+            students_with_attendance += 1
+            total_present += attendance.count("P")
+            total_absent += attendance.count("A")
+
+    total_classes_recorded = total_present + total_absent
+
+    print("\n" + "=" * 50)
+    print("          CLASS ATTENDANCE SUMMARY")
+    print("=" * 50)
+
+    print(f"Total Students       : {total_students}")
+    print(f"Students with Record : {students_with_attendance}")
+    print(f"Total Present        : {total_present}")
+    print(f"Total Absent         : {total_absent}")
+    print(f"Classes Recorded     : {total_classes_recorded}")
+
+    if total_classes_recorded > 0:
+        overall_percentage = (
+            total_present / total_classes_recorded
+        ) * 100
+
+        print(f"Overall Attendance   : {overall_percentage:.2f}%")
+    else:
+        print("Overall Attendance   : 0.00%")
+
+    print("=" * 50)
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -158,5 +199,8 @@ search_student()
 # Mark attendance
 mark_attendance()
 
-# Display attendance percentage
+# Display individual attendance
 display_attendance()
+
+# Display class summary
+attendance_summary()
