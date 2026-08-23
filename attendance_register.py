@@ -33,9 +33,25 @@ def add_student():
     print(f"\nStudent {name} added successfully.")
 
 
+# Function to display all registered students
+def display_students():
+    if not students:
+        print("\nNo students have been registered yet.")
+        return
+
+    print("\n" + "=" * 50)
+    print("              STUDENT LIST")
+    print("=" * 50)
+
+    for roll_number, student in students.items():
+        print(f"Roll Number : {roll_number}")
+        print(f"Name        : {student['name']}")
+        print("-" * 50)
+
+
 # Add students
 print("\n--- Add Student ---")
 add_student()
 
-print("\nCurrent Student Records:")
-print(students)
+# Display all students
+display_students()
