@@ -18,7 +18,6 @@ students = {}
 def add_student():
     roll_number = input("Enter Roll Number: ").strip()
 
-    # Check whether the roll number already exists
     if roll_number in students:
         print("Error: This Roll Number is already registered.")
         return
@@ -218,6 +217,56 @@ def attendance_history():
     print("=" * 50)
 
 
+# Function to update an attendance record
+def update_attendance():
+    roll_number = input("\nEnter Roll Number: ").strip()
+
+    if roll_number not in students:
+        print("Student not found.")
+        return
+
+    attendance = students[roll_number]["attendance"]
+
+    if not attendance:
+        print("No attendance records available for this student.")
+        return
+
+    print("\nCurrent Attendance:")
+
+    for i in range(len(attendance)):
+        status = "Present" if attendance[i] == "P" else "Absent"
+        print(f"Class {i + 1}: {status}")
+
+    try:
+        class_number = int(input("\nEnter Class Number to update: "))
+    except ValueError:
+        print("Invalid class number. Please enter a number.")
+        return
+
+    if class_number < 1 or class_number > len(attendance):
+        print("Invalid class number.")
+        return
+
+    new_status = input(
+        "Enter new status (P for Present / A for Absent): "
+    ).strip().upper()
+
+    if new_status not in ["P", "A"]:
+        print("Invalid attendance status.")
+        return
+
+    old_status = attendance[class_number - 1]
+    attendance[class_number - 1] = new_status
+
+    old_status_text = "Present" if old_status == "P" else "Absent"
+    new_status_text = "Present" if new_status == "P" else "Absent"
+
+    print(
+        f"Attendance updated from {old_status_text} "
+        f"to {new_status_text}."
+    )
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -239,3 +288,6 @@ attendance_summary()
 
 # Display attendance history
 attendance_history()
+
+# Update an attendance record
+update_attendance()
