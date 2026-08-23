@@ -17,6 +17,12 @@ students = {}
 # Function to add a new student
 def add_student():
     roll_number = input("Enter Roll Number: ").strip()
+
+    # Check whether the roll number already exists
+    if roll_number in students:
+        print("Error: This Roll Number is already registered.")
+        return
+
     name = input("Enter Student Name: ").strip()
 
     students[roll_number] = {
