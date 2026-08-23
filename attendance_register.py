@@ -63,6 +63,7 @@ def search_student():
         print(f"Name        : {student['name']}")
         print(f"Attendance Records : {len(student['attendance'])}")
         print("=" * 50)
+
     else:
         print("\nStudent not found.")
         print("Please check the Roll Number and try again.")
@@ -99,6 +100,51 @@ def mark_attendance():
         print("Please enter P for Present or A for Absent.")
 
 
+# Function to calculate attendance percentage
+def calculate_percentage(attendance):
+    total_classes = len(attendance)
+
+    if total_classes == 0:
+        return 0
+
+    present_classes = attendance.count("P")
+
+    percentage = (present_classes / total_classes) * 100
+
+    return percentage
+
+
+# Function to display attendance percentage
+def display_attendance():
+    roll_number = input("\nEnter Roll Number: ").strip()
+
+    if roll_number not in students:
+        print("Student not found.")
+        return
+
+    student = students[roll_number]
+    attendance = student["attendance"]
+
+    total_classes = len(attendance)
+    present_classes = attendance.count("P")
+    absent_classes = attendance.count("A")
+
+    percentage = calculate_percentage(attendance)
+
+    print("\n" + "=" * 50)
+    print("           ATTENDANCE REPORT")
+    print("=" * 50)
+
+    print(f"Roll Number    : {roll_number}")
+    print(f"Student Name   : {student['name']}")
+    print(f"Total Classes  : {total_classes}")
+    print(f"Present        : {present_classes}")
+    print(f"Absent         : {absent_classes}")
+    print(f"Attendance     : {percentage:.2f}%")
+
+    print("=" * 50)
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -111,3 +157,6 @@ search_student()
 
 # Mark attendance
 mark_attendance()
+
+# Display attendance percentage
+display_attendance()
