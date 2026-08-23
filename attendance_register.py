@@ -216,11 +216,7 @@ def attendance_history():
     print()
 
     for i in range(len(attendance)):
-        if attendance[i] == "P":
-            status = "Present"
-        else:
-            status = "Absent"
-
+        status = "Present" if attendance[i] == "P" else "Absent"
         print(f"Class {i + 1:<3} : {status}")
 
     print("=" * 50)
@@ -334,7 +330,6 @@ def class_statistics():
     print(f"Absent Records : {total_absent}")
 
     if attendance_percentages:
-
         average_attendance = (
             sum(attendance_percentages)
             / len(attendance_percentages)
@@ -349,6 +344,44 @@ def class_statistics():
 
     else:
         print("No attendance has been recorded yet.")
+
+    print("=" * 50)
+
+
+# Function to identify students with highest and lowest attendance
+def attendance_insights():
+    student_percentages = []
+
+    for roll_number, student in students.items():
+        attendance = student["attendance"]
+
+        if attendance:
+            percentage = calculate_percentage(attendance)
+
+            student_percentages.append(
+                (percentage, roll_number, student["name"])
+            )
+
+    if not student_percentages:
+        print("\nNo attendance data available for insights.")
+        return
+
+    highest = max(student_percentages)
+    lowest = min(student_percentages)
+
+    print("\n" + "=" * 50)
+    print("          ATTENDANCE INSIGHTS")
+    print("=" * 50)
+
+    print(
+        f"Highest Attendance : {highest[2]} "
+        f"({highest[1]}) - {highest[0]:.2f}%"
+    )
+
+    print(
+        f"Lowest Attendance  : {lowest[2]} "
+        f"({lowest[1]}) - {lowest[0]:.2f}%"
+    )
 
     print("=" * 50)
 
@@ -383,3 +416,6 @@ low_attendance_students()
 
 # Display class statistics
 class_statistics()
+
+# Display attendance insights
+attendance_insights()
