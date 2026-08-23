@@ -68,6 +68,37 @@ def search_student():
         print("Please check the Roll Number and try again.")
 
 
+# Function to mark attendance for a student
+def mark_attendance():
+    roll_number = input("\nEnter Roll Number: ").strip()
+
+    # Check whether the student exists
+    if roll_number not in students:
+        print("Student not found.")
+        return
+
+    student = students[roll_number]
+
+    print(f"\nStudent: {student['name']}")
+    print("P - Present")
+    print("A - Absent")
+
+    status = input("Enter attendance status: ").strip().upper()
+
+    # Validate attendance status
+    if status == "P":
+        student["attendance"].append("P")
+        print("Attendance marked as Present.")
+
+    elif status == "A":
+        student["attendance"].append("A")
+        print("Attendance marked as Absent.")
+
+    else:
+        print("Invalid attendance status.")
+        print("Please enter P for Present or A for Absent.")
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -77,3 +108,6 @@ display_students()
 
 # Search for a student
 search_student()
+
+# Mark attendance
+mark_attendance()
