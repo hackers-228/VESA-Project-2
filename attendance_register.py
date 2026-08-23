@@ -19,6 +19,10 @@ def add_student():
         print("Roll Number cannot be empty.")
         return
 
+    if not roll_number.isdigit():
+        print("Roll Number must contain only numbers.")
+        return
+
     if roll_number in students:
         print("Error: This Roll Number is already registered.")
         return
@@ -27,6 +31,10 @@ def add_student():
 
     if not name:
         print("Student name cannot be empty.")
+        return
+
+    if not all(character.isalpha() or character.isspace() for character in name):
+        print("Student name should contain only letters and spaces.")
         return
 
     students[roll_number] = {
