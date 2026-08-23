@@ -49,9 +49,31 @@ def display_students():
         print("-" * 50)
 
 
-# Add students
+# Function to search for a student using Roll Number
+def search_student():
+    roll_number = input("\nEnter Roll Number to search: ").strip()
+
+    if roll_number in students:
+        student = students[roll_number]
+
+        print("\n" + "=" * 50)
+        print("             STUDENT DETAILS")
+        print("=" * 50)
+        print(f"Roll Number : {roll_number}")
+        print(f"Name        : {student['name']}")
+        print(f"Attendance Records : {len(student['attendance'])}")
+        print("=" * 50)
+    else:
+        print("\nStudent not found.")
+        print("Please check the Roll Number and try again.")
+
+
+# Add a student
 print("\n--- Add Student ---")
 add_student()
 
 # Display all students
 display_students()
+
+# Search for a student
+search_student()
