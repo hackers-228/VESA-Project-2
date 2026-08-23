@@ -99,18 +99,23 @@ def mark_attendance():
     print("P - Present")
     print("A - Absent")
 
-    status = input("Enter attendance status: ").strip().upper()
+    while True:
+     status = input(
+        "Enter attendance status (P/A): "
+    ).strip().upper()
 
-    if status == "P":
+     if status == "P":
         student["attendance"].append("P")
         print("Attendance marked as Present.")
+        break
 
-    elif status == "A":
+     elif status == "A":
         student["attendance"].append("A")
         print("Attendance marked as Absent.")
+        break
 
-    else:
-        print("Invalid attendance status.")
+     else:
+        print("Invalid input.")
         print("Please enter P for Present or A for Absent.")
 
 
@@ -257,9 +262,9 @@ def update_attendance():
         print(f"Class {i + 1}: {status}")
 
     try:
-        class_number = int(input("\nEnter Class Number to update: "))
+        class_number = int(input("Enter class number to update: ").strip())
     except ValueError:
-        print("Invalid class number. Please enter a number.")
+        print("Class number must be a valid integer.")
         return
 
     if class_number < 1 or class_number > len(attendance):
@@ -467,5 +472,5 @@ while True:
         break
 
     else:
-        print("\nInvalid choice.")
-        print("Please select a number from 1 to 12.")
+        print("\nInvalid menu choice.")
+        print("Please enter a number between 1 and 12.")
