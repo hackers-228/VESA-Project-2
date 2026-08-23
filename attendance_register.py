@@ -4,11 +4,23 @@
 # Domain: Python Programming
 # --------------------------------------------
 
-# Minimum attendance percentage required
+APP_TITLE = "STUDENT ATTENDANCE REGISTER"
 ATTENDANCE_THRESHOLD = 75
 
 # Dictionary to store all student records
 students = {}
+
+def print_separator():
+    print("=" * 50)
+
+def get_student():
+    roll_number = input("Enter Roll Number: ").strip()
+
+    if roll_number not in students:
+        print("Student not found.")
+        return None
+
+    return roll_number
 
 
 # Function to add a new student
@@ -428,49 +440,59 @@ def display_menu():
 # Main program
 print("\nWelcome to the Attendance Management System!")
 
-while True:
-    display_menu()
+def main():
+    print("=" * 50)
+    print(f"        {APP_TITLE}")
+    print("=" * 50)
+    print("Welcome to the Attendance Management System!")
 
-    choice = input("Enter your choice: ").strip()
+    while True:
+        display_menu()
 
-    if choice == "1":
-        add_student()
+        choice = input("Enter your choice: ").strip()
 
-    elif choice == "2":
-        display_students()
+        if choice == "1":
+            add_student()
 
-    elif choice == "3":
-        search_student()
+        elif choice == "2":
+            display_students()
 
-    elif choice == "4":
-        mark_attendance()
+        elif choice == "3":
+            search_student()
 
-    elif choice == "5":
-        display_attendance()
+        elif choice == "4":
+            mark_attendance()
 
-    elif choice == "6":
-        attendance_history()
+        elif choice == "5":
+            display_attendance()
 
-    elif choice == "7":
-        update_attendance()
+        elif choice == "6":
+            attendance_history()
 
-    elif choice == "8":
-        attendance_summary()
+        elif choice == "7":
+            update_attendance()
 
-    elif choice == "9":
-        low_attendance_students()
+        elif choice == "8":
+            attendance_summary()
 
-    elif choice == "10":
-        class_statistics()
+        elif choice == "9":
+            low_attendance_students()
 
-    elif choice == "11":
-        attendance_insights()
+        elif choice == "10":
+            class_statistics()
 
-    elif choice == "12":
-        print("\nThank you for using Student Attendance Register.")
-        print("Exiting program...")
-        break
+        elif choice == "11":
+            attendance_insights()
 
-    else:
-        print("\nInvalid menu choice.")
-        print("Please enter a number between 1 and 12.")
+        elif choice == "12":
+            print("\nThank you for using Student Attendance Register.")
+            print("Exiting program...")
+            break
+
+        else:
+            print("\nInvalid menu choice.")
+            print("Please enter a number between 1 and 12.")
+
+
+if __name__ == "__main__":
+    main()
