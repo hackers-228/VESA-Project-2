@@ -10,6 +10,9 @@ print("=" * 50)
 
 print("Welcome to the Attendance Management System!")
 
+# Minimum attendance percentage required
+ATTENDANCE_THRESHOLD = 75
+
 # Dictionary to store all student records
 students = {}
 
@@ -136,6 +139,12 @@ def display_attendance():
     print(f"Present        : {present_classes}")
     print(f"Absent         : {absent_classes}")
     print(f"Attendance     : {percentage:.2f}%")
+
+    if total_classes > 0:
+        if percentage < ATTENDANCE_THRESHOLD:
+            print("Warning: Attendance is below 75%.")
+        else:
+            print("Status: Attendance is satisfactory.")
 
     print("=" * 50)
 
@@ -267,6 +276,34 @@ def update_attendance():
     )
 
 
+# Function to display students with low attendance
+def low_attendance_students():
+    print("\n" + "=" * 50)
+    print("          LOW ATTENDANCE STUDENTS")
+    print("=" * 50)
+
+    found = False
+
+    for roll_number, student in students.items():
+        attendance = student["attendance"]
+
+        if attendance:
+            percentage = calculate_percentage(attendance)
+
+            if percentage < ATTENDANCE_THRESHOLD:
+                found = True
+
+                print(f"Roll Number : {roll_number}")
+                print(f"Name        : {student['name']}")
+                print(f"Attendance  : {percentage:.2f}%")
+                print("-" * 50)
+
+    if not found:
+        print("No students currently have low attendance.")
+
+    print("=" * 50)
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -291,3 +328,6 @@ attendance_history()
 
 # Update an attendance record
 update_attendance()
+
+# Display students with low attendance
+low_attendance_students()
