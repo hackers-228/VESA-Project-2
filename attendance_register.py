@@ -304,6 +304,55 @@ def low_attendance_students():
     print("=" * 50)
 
 
+# Function to display class statistics
+def class_statistics():
+    if not students:
+        print("\nNo student records available.")
+        return
+
+    attendance_percentages = []
+
+    total_present = 0
+    total_absent = 0
+
+    for student in students.values():
+        attendance = student["attendance"]
+
+        if attendance:
+            percentage = calculate_percentage(attendance)
+            attendance_percentages.append(percentage)
+
+            total_present += attendance.count("P")
+            total_absent += attendance.count("A")
+
+    print("\n" + "=" * 50)
+    print("          CLASS ATTENDANCE STATISTICS")
+    print("=" * 50)
+
+    print(f"Total Students : {len(students)}")
+    print(f"Present Records: {total_present}")
+    print(f"Absent Records : {total_absent}")
+
+    if attendance_percentages:
+
+        average_attendance = (
+            sum(attendance_percentages)
+            / len(attendance_percentages)
+        )
+
+        highest_attendance = max(attendance_percentages)
+        lowest_attendance = min(attendance_percentages)
+
+        print(f"Average Attendance : {average_attendance:.2f}%")
+        print(f"Highest Attendance : {highest_attendance:.2f}%")
+        print(f"Lowest Attendance  : {lowest_attendance:.2f}%")
+
+    else:
+        print("No attendance has been recorded yet.")
+
+    print("=" * 50)
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -331,3 +380,6 @@ update_attendance()
 
 # Display students with low attendance
 low_attendance_students()
+
+# Display class statistics
+class_statistics()
