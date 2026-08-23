@@ -49,7 +49,7 @@ def display_students():
         print("-" * 50)
 
 
-# Function to search for a student using Roll Number
+# Function to search for a student
 def search_student():
     roll_number = input("\nEnter Roll Number to search: ").strip()
 
@@ -59,8 +59,8 @@ def search_student():
         print("\n" + "=" * 50)
         print("             STUDENT DETAILS")
         print("=" * 50)
-        print(f"Roll Number : {roll_number}")
-        print(f"Name        : {student['name']}")
+        print(f"Roll Number        : {roll_number}")
+        print(f"Name               : {student['name']}")
         print(f"Attendance Records : {len(student['attendance'])}")
         print("=" * 50)
 
@@ -69,7 +69,7 @@ def search_student():
         print("Please check the Roll Number and try again.")
 
 
-# Function to mark attendance for a student
+# Function to mark attendance
 def mark_attendance():
     roll_number = input("\nEnter Roll Number: ").strip()
 
@@ -107,9 +107,7 @@ def calculate_percentage(attendance):
 
     present_classes = attendance.count("P")
 
-    percentage = (present_classes / total_classes) * 100
-
-    return percentage
+    return (present_classes / total_classes) * 100
 
 
 # Function to display individual attendance
@@ -186,6 +184,40 @@ def attendance_summary():
     print("=" * 50)
 
 
+# Function to display attendance history
+def attendance_history():
+    roll_number = input("\nEnter Roll Number: ").strip()
+
+    if roll_number not in students:
+        print("Student not found.")
+        return
+
+    student = students[roll_number]
+    attendance = student["attendance"]
+
+    if not attendance:
+        print("\nNo attendance history available.")
+        return
+
+    print("\n" + "=" * 50)
+    print("           ATTENDANCE HISTORY")
+    print("=" * 50)
+
+    print(f"Roll Number : {roll_number}")
+    print(f"Student     : {student['name']}")
+    print()
+
+    for i in range(len(attendance)):
+        if attendance[i] == "P":
+            status = "Present"
+        else:
+            status = "Absent"
+
+        print(f"Class {i + 1:<3} : {status}")
+
+    print("=" * 50)
+
+
 # Add a student
 print("\n--- Add Student ---")
 add_student()
@@ -204,3 +236,6 @@ display_attendance()
 
 # Display class summary
 attendance_summary()
+
+# Display attendance history
+attendance_history()
